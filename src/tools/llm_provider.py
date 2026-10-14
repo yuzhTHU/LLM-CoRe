@@ -68,24 +68,28 @@ class LLMProvider:
         ## Yield children one by one
         loader = GenWrapper(loader)
         for markdown in loader:
-            if (raw_program := self.assistant.markdown_to_program(markdown)) is None:
+            try:
+                if (raw_program := self.assistant.markdown_to_program(markdown)) is None:
+                    yield None
+                elif (triplet := self.assistant.program_to_triplet(raw_program)) is None:
+                    yield None
+                else:
+                    triplet = self.assistant.triplet_to_reduction(triplet)
+                    child = Individual(
+                        uuid=my_uuid(self._rng),
+                        n_iter=n_iter,
+                        source='llm-mutation',
+                        parents=[indiv.uuid for indiv in parents],
+                        triplet=triplet,
+                        program=self.assistant.triplet_to_program(triplet),
+                        dynamics=self.assistant.triplet_to_dynamics(triplet),
+                    )
+                    # 无法在这里为 child 生成 explanation，因为尚未评估其 fitness 和 detail
+                    child.raw_program = raw_program
+                    yield child
+            except Exception as exc:
+                _logger.warning("Discarding an invalid LLM candidate: %s", exc)
                 yield None
-            elif (triplet := self.assistant.program_to_triplet(raw_program)) is None:
-                yield None
-            else:
-                triplet = self.assistant.triplet_to_reduction(triplet)
-                child = Individual(
-                    uuid=my_uuid(self._rng), 
-                    n_iter=n_iter,
-                    source='llm-mutation', 
-                    parents=[indiv.uuid for indiv in parents],
-                    triplet=triplet,
-                    program=self.assistant.triplet_to_program(triplet),
-                    dynamics=self.assistant.triplet_to_dynamics(triplet),
-                )
-                # 无法在这里为 child 生成 explanation，因为尚未评估其 fitness 和 detail
-                child.raw_program = raw_program
-                yield child
         save_data = loader.return_value
         if self.args.save_path: 
             save_file = Path(self.args.save_path) / 'response' / f'response_{n_iter}.json'

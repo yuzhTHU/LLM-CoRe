@@ -117,17 +117,21 @@ class GPOperator:
                 f_wwv = self.reduce_tree(f_wwv, max_len=self.args.f_wwv_max_len_for_GP)
             triplet = Triplet(coeff=coeff, f_sst=f_sst, f_wwv=f_wwv)
             ## Generate Children
-            triplet = self.assistant.triplet_to_reduction(triplet)
-            child = Individual(
-                uuid=my_uuid(self._rng),
-                n_iter=n_iter,
-                source=method,
-                parents=[parent.uuid for parent in parents],
-                triplet=triplet,
-                program=self.assistant.triplet_to_program(triplet),
-                dynamics=self.assistant.triplet_to_dynamics(triplet),
-            )
-            yield child
+            try:
+                triplet = self.assistant.triplet_to_reduction(triplet)
+                child = Individual(
+                    uuid=my_uuid(self._rng),
+                    n_iter=n_iter,
+                    source=method,
+                    parents=[parent.uuid for parent in parents],
+                    triplet=triplet,
+                    program=self.assistant.triplet_to_program(triplet),
+                    dynamics=self.assistant.triplet_to_dynamics(triplet),
+                )
+                yield child
+            except Exception as exc:
+                _logger.warning("Discarding an invalid GP candidate: %s", exc)
+                yield None
 
     def tournament(self, population: List[Individual], num) -> List[Individual]:
         size = (num, self.args.tournament_size)
