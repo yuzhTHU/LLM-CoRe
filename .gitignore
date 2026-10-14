@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+/jupyterlab/
+/.virtual_documents/
+/.pytest_cache/
+/.vscode/
+/venv/
+/log/
+/playground/
+/data/*
+!/data/*.csv
+/.env
