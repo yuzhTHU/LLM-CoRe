@@ -4,7 +4,10 @@ import pandas as pd
 
 def jsonalize(data):
     if isinstance(data, dict):
-        return {jsonalize(k): jsonalize(v) for k, v in data.items()}
+        return {
+            ("/".join(map(str, k)) if isinstance(k, tuple) else str(jsonalize(k))): jsonalize(v)
+            for k, v in data.items()
+        }
     elif isinstance(data, list):
         return [jsonalize(v) for v in data]
     elif isinstance(data, tuple):

@@ -240,7 +240,7 @@ if __name__ == "__main__":
     parser.add_argument("--a_contain_co2", type=float, default=0.0, help="Weight for whether the formula contains CO2 in the fitness function")
     parser.add_argument("--save_checkpoint_per_iter", type=int, default=1, help="Save checkpoint every N iterations")
     parser.add_argument('--max_params', type=int, default=5, help='Maximum number of nonlinear parameters allowed to fit')
-    parser.add_argument("--save_dir", type=str, default="./log/search", help="Directory to save logs and models")
+    parser.add_argument("--save_dir", type=str, default="./logs/search", help="Directory to save logs and models")
     parser.add_argument("--debug", action="store_true", help="Enable debug mode with more verbose logging")
     parser.add_argument("--log_per_iter", type=int, default=1, help="Log information every N iterations")
     parser.add_argument("--log_per_sec", type=float, default=None, help="Log detailed info every N seconds")

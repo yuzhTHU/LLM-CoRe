@@ -7,8 +7,10 @@ __pycache__/
 /.pytest_cache/
 /.vscode/
 /venv/
-/log/
+/logs/
 /playground/
 /data/*
 !/data/*.csv
+!/data/baseline/
+!/data/baseline/**
 /.env
