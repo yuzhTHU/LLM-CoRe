@@ -66,8 +66,7 @@ venv/bin/python -m jupyter nbconvert --to notebook --execute \
 
 - `data/*.csv`：观测和外强迫时间序列；
 - `data/baseline/<baseline-name>/*.csv`：ORCA-DL、UniCM 和 Physics-DESN 的已导出预测结果；
-- `data/figure2/details.pkl.gz`：图 2 使用的压缩预测明细；
 - `data/counterfactual/*.csv`：图 4 反事实实验使用的精简统计量；
-- `data/reported_search_args.json`：手稿整理过程中保留的历史搜索参数记录，其中路径字段反映原始运行位置。
+- `data/cache`：...
 
 仓库不包含旧的多 GB 中间模拟缓存。保留的 notebook 包含重新生成必要结果的实验代码。

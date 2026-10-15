@@ -9,8 +9,4 @@ __pycache__/
 /venv/
 /logs/
 /playground/
-/data/*
-!/data/*.csv
-!/data/baseline/
-!/data/baseline/**
 /.env
