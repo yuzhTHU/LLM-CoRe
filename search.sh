@@ -14,6 +14,7 @@ exec "$ROOT/venv/bin/python" search.py \
   --no-use_l3yo_cv \
   --use_nfold_cv \
   --max_month 30 \
+  --damp 0 \
   --population_size 200 \
   --n_iter 300 \
   --programs_per_prompt 2 \
