@@ -45,7 +45,7 @@
     "a_contain_co2": 0.0,
     "save_checkpoint_per_iter": 1,
     "max_params": 5,
-    "save_dir": "./log/search",
+    "save_dir": "./logs/search",
     "debug": false,
     "log_per_iter": 1,
     "log_per_sec": null,
@@ -119,6 +119,6 @@
     "use_l3yo_cv": false,
     "use_nfold_cv": true,
     "evaluate_before_and_after_2000": false,
-    "save_path": "log/search/20260225_Reduce_320_230_368_101134_SIM1",
+    "save_path": "logs/search/20260225_Reduce_320_230_368_101134_SIM1",
     "command": "/mnt/mergerfs/yuzihan/MergedWorkSpace/33-ClimateModel/ClimateModelCode/venv/bin/python search.py --name Reduce_320_230_368 --timeout 240 --setting only_co2 --no_llm --train_period 1979-01 2024-12 --test_period 1979-01 2024-12 --no_use_z20_as_ohc --no-use_l3yo_cv --use_nfold_cv --seed_individuals co2_320_230_368 --use_seed_individuals_only --p_crossover 0.0 --p_subtree_mutation 0.0 --p_hoist_mutation 0.0 --p_point_mutation 0.0 --p_term_reduction 0.3 --p_collapse_reduction 0.3 --p_unwrap_reduction 0.3 --p_modal_reduction 0.0 --a_length 1.0 --a_std 0.3 --a_skewness 0.3 --a_spectrum 0.3 --a_skill_cv_sum 0.0 --a_ENSO_skill_cv 1.0 --a_skill_sum 0.0 --a_ENSO_skill 0.0 --seed-individuals linear --a_Total_skill_cv 10.0 --a_contain_co2 0 --a_skill_after_2004 5.0 --a_params 1.0"
 }

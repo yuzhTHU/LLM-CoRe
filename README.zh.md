@@ -49,7 +49,7 @@ venv/bin/python -m jupyter nbconvert --to notebook --execute \
 
 输出保存在 `logs/scripts/<notebook-name>/`，文件名直接对应正文 panel：
 
-- `figure2_deterministic.ipynb`：`Fig2a-c-e` 和 `Fig2b-d-f`；
+- `figure2_deterministic.ipynb`：`Fig2a-c-e`、`Fig2b-d-f-1` 和 `Fig2b-d-f-2`；
 - `figure2_stochastic.ipynb`：`Fig2g-h`；
 - `figure3_co2_attribution.ipynb`：`Fig3a`、`Fig3b`；
 - `figure3_interactions.ipynb`：`Fig3c`、`Fig3d`、`Fig3e`；
@@ -58,7 +58,7 @@ venv/bin/python -m jupyter nbconvert --to notebook --execute \
 - `figure4_counterfactual.ipynb`：`Fig4a-c`、`Fig4d`；
 - `figure4_phase_space.ipynb`：`Fig4e`、`Fig4f`、`Fig4g`、`Fig4h`。
 
-每张图同时输出 SVG、PNG 和 PDF。`Fig2a-c-e` 表示同一文件包含不连续的 a、c、e 三个 panel；`Fig4a-c` 表示同一文件包含连续的 a--c 三个 panel。Figure 1 为演示文稿软件组装的示意图，因此没有对应的绘图 notebook。
+每张图同时输出 SVG、PNG 和 PDF。`Fig2a-c-e` 表示同一文件包含不连续的 a、c、e 三个 panel；`Fig2b-d-f-1` 和 `Fig2b-d-f-2` 是共同构成 b、d、f 三个 panel 的两张图；`Fig4a-c` 表示同一文件包含连续的 a--c 三个 panel。Figure 1 为演示文稿软件组装的示意图，因此没有对应的绘图 notebook。
 
 `figure3_interactions.ipynb` 中的逐连接消融计算最耗时，在测试机器上约需 20 分钟。其预测结果会缓存在该 notebook 的输出目录，后续运行会复用缓存。
 
@@ -67,6 +67,7 @@ venv/bin/python -m jupyter nbconvert --to notebook --execute \
 - `data/*.csv`：观测和外强迫时间序列；
 - `data/baseline/<baseline-name>/*.csv`：ORCA-DL、UniCM 和 Physics-DESN 的已导出预测结果；
 - `data/counterfactual/*.csv`：图 4 反事实实验使用的精简统计量；
-- `data/cache`：...
+- `data/cache/default_args.json`：绘图时加载模型所需的默认参数；
+- `data/cache/figure2_deterministic.pkl.xz`：Figure 2 确定性预测 panel 使用的压缩预测明细。
 
 仓库不包含旧的多 GB 中间模拟缓存。保留的 notebook 包含重新生成必要结果的实验代码。
